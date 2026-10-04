@@ -1,0 +1,31 @@
+# 编译产物
+build/
+out/
+bin/
+obj/
+*.o
+*.elf
+*.bin
+*.hex
+*.map
+
+# IDE
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# 依赖
+node_modules/
+__pycache__/
+*.pyc
+
+# 系统
+.DS_Store
+Thumbs.db
+scripts/
+sessions/
+docs/validation/
+.reading_tmp/
+
+~\$*
