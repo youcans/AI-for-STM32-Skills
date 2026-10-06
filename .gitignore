@@ -1,7 +1,7 @@
+# Project management (local only)
 project_management/
-demo_basics_ref/
 
-# 编译输出（任意层级）
+# Build output
 **/Debug/
 **/Release/
 **/*.o
@@ -14,29 +14,41 @@ demo_basics_ref/
 **/*.crf
 **/*.dep
 
-# IDE 个人配置文件
+# IDE / tool files
 **/.vscode/*
 **/*.scvd
 **/*.launch
 **/.settings/
 **/.project
 **/.cproject
+**/.clangd
+**/*.idx
+**/*.obj
+**/*.check_cache
+**/.cmake/
+**/.ninja*
+**/docs/tmp/
 
-# CubeMX 临时文件（.ioc 本体必须保留）
+# CubeMX temp files (.ioc itself must be kept)
 **/.mxproject
 **/STM32CubeMX/
 
-# 系统临时文件
+# System files
 Thumbs.db
 *.tmp
 *.log
 
-# CubeMX 生成的 CMakeLists.txt（所有层级，不提交）
+# CubeMX generated CMakeLists.txt
 **/CMakeLists.txt
 
-# Claude Code 本地缓存（所有层级，不提交）
+# Claude Code local cache
 **/.claude/
 
-# VS Code 本地配置文件（保留 settings.json，忽略含本地路径的文件）
+# VS Code local configs
 **/.vscode/c_cpp_properties.json
 **/.vscode/launch.json
+
+# demo_basics: only .ioc files
+demo_basics/**
+!demo_basics/**/
+!demo_basics/**/*.ioc
