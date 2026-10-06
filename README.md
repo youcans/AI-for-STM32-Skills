@@ -1,497 +1,319 @@
-# AI-for-STM32-Skills
+# AI4STM32
 
-**基于Claude Code的STM32基础实验AI协同开发Skill**
+**Claude Code Skills for AI-Collaborative STM32 Basic Experiment Development**
 
-- 作者：Huang Xiaofeng & Huang Shan
-- GitHub：[@youcans](https://github.com/youcans)
+English | [简体中文](README_zh-CN.md)
 
----
-
-## 📖 项目简介
-
-AI-for-STM32-Skills是一套面向STM32基础实验开发的Claude Code用户级Skill，主要用于需求整理、初始工程分析、编程任务规划、代码实现和开发日志记录。
-
-本项目重点面向GPIO、ADC、DAC、UART、定时器、PWM、中断、DMA以及主循环、事件驱动、状态机等STM32基础外设和程序运行机制实验。
-
-项目不追求复杂的软件工程流程和高度自动化，而是根据STM32基础实验功能明确、工程规模较小、开发任务相对简单的特点，将AI协同开发过程简化为少量职责明确、能够实际运行的Skill。
-
-基本原则是：
-
-> **准确、清晰、简洁。**
-
-开发思路是：
-
-> **最小实现，先跑通；实践验证，再迭代。**
+- Project: AI4STM32
+- GitHub Repository: `AI-for-STM32-Skills`
+- Authors: Huang Xiaofeng & Huang Shan
+- Email: ai4mcu@qq.com
+- GitHub: [@youcans](https://github.com/youcans)
 
 ---
 
-## 🎯 项目背景与定位
+## Introduction
 
-Claude Code能够读取工程文件、分析源码并直接修改程序，但STM32开发并不只是编写代码，还涉及STM32CubeMX配置、代码生成、工程构建、程序烧录和实际硬件运行验证。
+AI4STM32 is a set of Claude Code user-level Skills designed for STM32 basic experiment development. It organizes project requirement preparation, initial project analysis, programming task planning, code implementation, and development logging into a simplified and practical AI-collaborative STM32 development workflow.
 
-因此，本项目不把AI编程简单理解为“让AI生成STM32代码”，而是把Claude Code嵌入真实STM32开发过程，由AI与开发者分别承担适合自己的工作。
+The project mainly targets basic STM32 experiments involving GPIO, timers, PWM, ADC, DAC, UART, I2C, SPI, interrupts, DMA, RTC, watchdogs, Flash, and related MCU programming mechanisms. Claude Code works together with STM32CubeMX, VS Code, and real development boards throughout the development process.
 
-整个开发过程主要由三部分组成：
+AI4STM32 currently consists of five Skills: `stm32-init`, `stm32-scan`, `stm32-plan`, `stm32-code`, and `stm32-log`.
 
-- **Claude Code Skill**：负责需求整理、工程分析、任务规划、代码修改和开发记录；
-- **开发者**：负责关键内容确认、任务控制、Build、烧录、调试和实际硬件运行验证；
-- **STM32开发工具**：STM32CubeMX负责底层硬件配置和初始工程生成，VS Code及相关工具负责构建、烧录和调试。
+The project follows two basic principles:
 
-本项目采用开发者主动调用Skill的方式推进项目，不设置统一流程调度Skill。开发者根据当前开发阶段决定调用哪个Skill，并在需要人工操作时完成对应工作。
+> **Accurate, clear, and simple.**
 
----
-
-## 🧩 STM32 Skill体系
-
-当前项目包含5个STM32开发Skill：
-
-| Skill | 主要功能 |
-|---|---|
-| `stm32-init` | 项目初始化、需求整理和硬件信息准备 |
-| `stm32-scan` | STM32CubeMX初始工程分析 |
-| `stm32-plan` | 编程任务拆分和任务规划 |
-| `stm32-code` | 指定编程任务的代码实施 |
-| `stm32-log` | 项目开发日志追加记录 |
-
-各Skill保持职责单一，通过项目正式文档和当前STM32工程传递开发信息。
-
-`stm32-log`作为内部服务Skill，由其它业务Skill在出口自动调用，不作为独立开发阶段使用。
+> **Start with the minimum implementation, make it work first, validate in practice, and iterate.**
 
 ---
 
-## 🔄 AI协同开发流程
+## Project Components
 
-典型开发流程如下：
+AI4STM32 consists mainly of Claude Code Skills, hardware documentation, and real STM32 basic experiment projects:
 
 ```text
-用户提出实验需求
-        │
-        ▼
+AI4STM32
+│
+├── claude-user-skills/    # Provides the AI-collaborative development method
+│
+├── hardware/              # Provides hardware information required for development
+│
+└── demo_basics/           # Provides real STM32 basic experiment projects
+                           # for running and validating the method
+```
+
+The `docs/` directory contains project-level documentation for AI4STM32.
+
+The main repository structure is:
+
+```text
+AI-for-STM32-Skills/
+├── claude-user-skills/
+├── demo_basics/
+├── docs/
+├── hardware/
+├── .gitignore
+├── LICENSE
+├── README.md
+├── README_zh-CN.md
+└── THIRD_PARTY_NOTICES.md
+```
+
+---
+
+## Skill System and Development Workflow
+
+### Skill Overview
+
+| Skill | Main Function | Invocation |
+|---|---|---|
+| `stm32-init` | Collects project goals, functional requirements, and hardware information, and generates the project requirements document | `/stm32-init [user-description]` |
+| `stm32-scan` | Analyzes the STM32CubeMX-generated initial project together with the project requirements | `/stm32-scan` |
+| `stm32-plan` | Splits and refines programming tasks and generates the programming task list | `/stm32-plan` |
+| `stm32-code` | Implements code changes for one specified programming task | `/stm32-code <task-id>` |
+| `stm32-log` | Appends development logs | Automatically called by other Skills |
+
+### Typical Development Workflow
+
+```text
+Developer creates an STM32 project directory
+        ↓
+Enter the project directory and start Claude Code
+        ↓
 stm32-init
         │
-        ├── 建立项目目录
-        └── 生成项目任务需求文件
-        │
-        ▼
-开发者使用STM32CubeMX完成配置
-并生成初始工程
-        │
-        ▼
-开发者完成初始Build
-确认初始工程能够正常构建
-        │
-        ▼
+        └── Generate the project requirements document
+        ↓
+Developer configures the project with STM32CubeMX
+and generates the .ioc file and initial project
+        ↓
+Developer performs the initial Build
+        ↓
 stm32-scan
         │
-        └── 生成初始工程分析文件
-        │
-        ▼
+        └── Generate the initial project analysis document
+        ↓
 stm32-plan
         │
-        ├── 第一阶段：确定任务拆分
+        ├── Stage 1: Generate the programming task list
         │        ↓
-        │     开发者确认
+        │     Developer review and confirmation
         │
-        └── 第二阶段：细化各编程任务
+        └── Stage 2: Refine each programming task
+        ↓
+stm32-code T01
         │
-        ▼
-stm32-code <project-name> <task-id>
-        │
-        └── 实施当前T0x代码修改
-        │
-        ▼
-开发者Build、烧录和运行验证
-        │
-        ▼
-当前任务完成
-        │
-        ▼
-继续下一个T0x
+        └── Implement code changes for the current task
+        ↓
+Developer performs Build, flashing, debugging,
+and hardware validation
+        ↓
+stm32-code T02
+        ↓
+Continue with subsequent programming tasks
 ```
 
-基础实验中的编程任务按照相对完整的阶段性目标划分，不按照单个文件、单个函数、单条语句或单个修改点机械拆分。
-
-任务统一采用：
-
-`T01、T02、T03……`
-
-连续编号，编号同时表示建议实施顺序。
+`stm32-log` is not used as an independent development stage. It is automatically called before the other business Skills exit and appends a development record.
 
 ---
 
-## 🛠️ 各Skill主要职责
+## Quick Start
 
-### `stm32-init`
+### 1. Get the Project
 
-调用方式：
+AI4STM32 uses a fixed default path for its hardware documentation, so cloning the repository to the following location is recommended:
 
-`/stm32-init <project-name> [user-description]`
-
-主要完成：
-
-- 建立项目目录；
-- 获取实验任务和功能要求；
-- 读取开发板硬件资料；
-- 整理硬件定义；
-- 生成项目任务需求文件；
-- 初始化项目开发日志。
-
-主要输出：
-
-`docs/requirements/proj_requirements.md`
-
-正常完成后，由开发者使用STM32CubeMX完成配置并生成初始工程。
-
----
-
-### `stm32-scan`
-
-调用方式：
-
-`/stm32-scan <project-name>`
-
-主要读取：
-
-- `<project-name>.ioc`
-- `CMakeLists.txt`
-- `Core/Inc/*.h`
-- `Core/Src/*.c`
-
-主要分析：
-
-- 工程基本信息；
-- 工程目录与构建结构；
-- 程序初始化与运行结构；
-- 外设配置、初始化函数和句柄；
-- 中断与HAL回调；
-- 后续代码接入位置。
-
-主要输出：
-
-`docs/analysis/proj_init_scan.md`
-
-分析仅限规定输入文件和模板要求，不扩展到无关文件或额外深入分析。
-
----
-
-### `stm32-plan`
-
-调用方式：
-
-`/stm32-plan <project-name>`
-
-主要输入：
-
-- `docs/requirements/proj_requirements.md`
-- `docs/analysis/proj_init_scan.md`
-
-任务规划分为两个阶段。
-
-第一阶段确定：
-
-- 任务编号；
-- 任务名称；
-- 任务概要。
-
-形成完整的初步任务清单后，由开发者集中审阅确认。
-
-第二阶段对确认后的每项任务进行细化，明确：
-
-- 任务目标；
-- 涉及文件；
-- 实施要点；
-- 验证要求。
-
-主要输出：
-
-`docs/tasks/proj_tasks.md`
-
----
-
-### `stm32-code`
-
-调用方式：
-
-`/stm32-code <project-name> <task-id>`
-
-例如：
-
-`/stm32-code DemoF02 T01`
-
-每次只实施一个指定任务。
-
-Skill读取：
-
-- `docs/tasks/proj_tasks.md`
-- `docs/analysis/proj_init_scan.md`
-- 当前任务规定涉及的`.c`和`.h`源码文件。
-
-代码修改仅允许发生在当前任务规定的文件和代码范围内。
-
-`stm32-code`不自动执行：
-
-- Build；
-- 编译；
-- STM32CubeMX Generate Code；
-- 程序烧录；
-- 实际硬件运行验证。
-
-代码修改完成后，Skill显示任务完成摘要和验证要求，由开发者自行完成后续验证。
-
----
-
-### `stm32-log`
-
-`stm32-log`由其它业务Skill在退出前自动调用。
-
-日志文件：
-
-`docs/<project-name>_log.md`
-
-每次调用追加一条开发记录：
-
-```markdown
-### YYYY-MM-DD HH:MM Skill名称
-
-- 开发事项：
-- 处理结果：
-- 当前状态：
+```text
+C:\AI-for-STM32-Skills
 ```
 
-已有日志内容必须保留，不覆盖、不修改、不删除，只在文件末尾追加新的记录。
-
----
-
-## 🚀 快速开始
-
-### 1. 准备开发环境
-
-需要准备：
-
-- Claude Code；
-- STM32CubeMX；
-- Visual Studio Code；
-- STM32 VS Code Extension及相应STM32工具链；
-- NUCLEO开发板或其它已支持硬件。
-
-当前支持开发板：
-
-- `nucleo-g431rb`
-- `nucleo-c542rc`
-
----
-
-### 2. 安装Skill
-
-Skill源码目录：
-
-`C:\AI4MCU\claude-user-skills\`
-
-Claude Code用户级Skill目录：
-
-`~/.claude/skills/`
-
-Windows PowerShell中可执行：
+Run the following command in Windows PowerShell:
 
 ```powershell
-@("stm32-init","stm32-scan","stm32-plan","stm32-code","stm32-log") | ForEach-Object {
-    Remove-Item "$HOME\.claude\skills\$_" -Recurse -Force -ErrorAction SilentlyContinue
-}
-
-Copy-Item "C:\AI4MCU\claude-user-skills\*" "$HOME\.claude\skills\" -Recurse
+git clone https://github.com/youcans/AI-for-STM32-Skills.git C:\AI-for-STM32-Skills
 ```
 
----
-
-### 3. 启动项目
-
-进入STM32工作目录：
+To update the repository later:
 
 ```powershell
-cd C:\STM32
+cd C:\AI-for-STM32-Skills
+git pull
 ```
 
-启动Claude Code：
+### 2. Install the Skills
+
+Create the Claude Code user-level Skill directory if it does not already exist:
 
 ```powershell
+New-Item -ItemType Directory -Path "$HOME\.claude\skills" -Force | Out-Null
+```
+
+Copy all AI4STM32 Skills into the Claude Code user-level Skill directory:
+
+```powershell
+Copy-Item -Path "C:\AI-for-STM32-Skills\claude-user-skills\*" -Destination "$HOME\.claude\skills\" -Recurse -Force
+```
+
+### 3. Create an STM32 Project and Start Claude Code
+
+An STM32 project can be located in any working directory. For example:
+
+```powershell
+mkdir D:\workspace\Demo01
+cd D:\workspace\Demo01
 claude
 ```
 
-初始化项目：
+The directory in which Claude Code is started is treated as the STM32 project root directory, and the project name is taken from the current directory name.
+
+In this example:
 
 ```text
-/stm32-init DemoF01
+<project-name> = Demo01
 ```
 
----
+### 4. Initialize the Project
 
-### 4. 使用STM32CubeMX生成初始工程
-
-根据`stm32-init`形成的项目任务需求完成STM32CubeMX配置并Generate Code。
-
-在VS Code中完成初始Build，确认初始工程可以正常构建。
-
----
-
-### 5. 分析初始工程
+If no user requirement description file is provided:
 
 ```text
-/stm32-scan DemoF01
+/stm32-init
 ```
 
----
-
-### 6. 规划编程任务
+If a user requirement description file is available:
 
 ```text
-/stm32-plan DemoF01
+/stm32-init [user-description]
 ```
 
-确认初步任务清单后，Skill继续生成完整编程任务说明。
+After the project requirements have been prepared, configure the MCU and peripherals in STM32CubeMX and generate the initial project.
 
----
+### 5. Continue Development
 
-### 7. 实施代码任务
-
-例如：
+After the initial project has been generated and the initial Build has been completed, run:
 
 ```text
-/stm32-code DemoF01 T01
+/stm32-scan
 ```
 
-代码修改完成后，由开发者进行Build、烧录和实际开发板运行验证。
-
-当前任务验证完成后，再执行下一任务：
+Then plan the programming tasks:
 
 ```text
-/stm32-code DemoF01 T02
+/stm32-plan
 ```
 
----
-
-## 📁 项目文档结构
-
-STM32项目统一建立在：
-
-`C:\STM32\<project-name>`
-
-主要开发文档结构：
+Implement the first programming task:
 
 ```text
-<project-name>/
-└── docs/
-    ├── tmp/
-    ├── requirements/
-    │   └── proj_requirements.md
-    ├── analysis/
-    │   └── proj_init_scan.md
-    ├── tasks/
-    │   └── proj_tasks.md
-    └── <project-name>_log.md
+/stm32-code T01
 ```
 
-各文件主要作用：
+After the code modification is completed, the developer performs Build, flashing, debugging, and hardware validation according to the validation requirements in the programming task list.
 
-- `proj_requirements.md`：项目任务需求和硬件定义；
-- `proj_init_scan.md`：STM32CubeMX初始工程分析结果；
-- `proj_tasks.md`：编程任务规划；
-- `<project-name>_log.md`：项目开发过程记录。
-
----
-
-## 🤝 AI与开发者的职责边界
-
-### Claude Code负责
-
-- 整理项目需求；
-- 分析STM32初始工程；
-- 拆分和细化编程任务；
-- 按指定任务修改代码；
-- 记录开发过程。
-
-### 开发者负责
-
-- 确认项目需求；
-- 完成STM32CubeMX配置；
-- 确认任务拆分；
-- Build；
-- 烧录；
-- 调试；
-- 实际硬件运行验证；
-- 控制任务实施顺序。
-
-本项目不试图让AI替代成熟的STM32开发工具，也不试图取消开发者对真实硬件开发过程的控制。
-
----
-
-## ✅ 当前验证情况
-
-当前5个Skill已经完成第一版设计，并使用NUCLEO-G431RB基础实验进行了实际运行验证。
-
-已验证的基本链路包括：
+Continue with the next task:
 
 ```text
-stm32-init
-    ↓
-STM32CubeMX生成初始工程
-    ↓
-初始Build
-    ↓
-stm32-scan
-    ↓
-stm32-plan
-    ↓
-stm32-code
-    ↓
-开发者Build
-    ↓
-烧录
-    ↓
-实际硬件运行验证
+/stm32-code T02
 ```
 
-在LED闪烁实验中，`stm32-code`按照任务规划仅修改指定的`main.c` USER CODE区域，没有自动执行构建或烧录。
+For complete installation, update, environment checking, and usage instructions, see:
 
-代码修改后由开发者完成Build和程序烧录，NUCLEO-G431RB板载LD2按照预期运行，验证了当前简化AI协同开发链路能够实际工作。
-
----
-
-## 🔭 后续计划
-
-当前阶段不以增加Skill数量为主要目标，而是继续使用真实STM32基础实验验证现有体系。
-
-重点包括：
-
-- GPIO实验；
-- ADC和DAC实验；
-- UART通信实验；
-- 定时器和PWM实验；
-- 中断和DMA实验；
-- 主循环多任务实验；
-- 事件驱动实验；
-- 状态机实验；
-- 多个`T0x`连续实施过程。
-
-根据实际运行结果，对Skill、模板和开发流程进行必要的局部调整。
+[Installation and Usage Guide](docs/Installation_Guide.md)
 
 ---
 
-## 📄 许可证
+## Basic Experiments
 
-本项目主要用于嵌入式软件AI编程方法研究、教学和技术交流。
+The `demo_basics/` directory contains STM32 basic experiment projects developed using the AI4STM32 Skill workflow. These projects are used to run and validate the AI-collaborative development method in real STM32 projects.
 
-代码、Skill、文档以及第三方资料的具体许可方式，以仓库中的许可证文件以及各目录中的相关声明为准。
+The repository currently contains 15 basic experiments. They are listed below in the intended experiment sequence rather than alphabetical order:
+
+```text
+demo_basics/
+├── GPIO_IOToggle/      # GPIO output toggle and LED blinking experiment
+├── GPIO_BUTTON/        # GPIO button input experiment
+├── GPIO_EXTI/          # GPIO external interrupt experiment
+├── TIM_IT_500ms/       # Timer 500 ms periodic interrupt experiment
+├── TIM_PWM_1kHz/       # Timer 1 kHz PWM output experiment
+├── TIM1_PWM_Comp/      # TIM1 complementary PWM output experiment
+├── ADC_IT/             # ADC analog data acquisition experiment
+├── DAC_Output/         # DAC analog signal output experiment
+├── USART_Echo/         # USART data receive/transmit echo experiment
+├── LPUART_DMA/         # LPUART DMA communication experiment
+├── I2C_Master_Slave/   # I2C master-slave communication experiment
+├── SPI_Master_Slave/   # SPI master-slave communication experiment
+├── IWDG_Reset/         # Independent watchdog reset experiment
+├── RTC_Alarm/          # RTC calendar and alarm experiment
+└── Flash_Parameter/    # Flash parameter storage experiment
+```
+
+Each directory is an independent STM32 experiment project containing the STM32CubeMX project, source code, and development documents generated during the AI4STM32 Skill workflow.
+
+Together, these experiments cover typical STM32 development topics including GPIO, timers, PWM, ADC/DAC, USART/LPUART, I2C, SPI, interrupts, DMA, RTC, independent watchdogs, and Flash.
 
 ---
 
-## 📬 联系作者
+## Supported Hardware
 
-如有问题、建议或项目交流，欢迎联系：
+The AI4STM32 hardware documentation is located at:
 
-- 作者：Huang Xiaofeng & Huang Shan
-- 邮箱：ai4mcu@qq.com
-- GitHub：[@youcans](https://github.com/youcans)
+```text
+C:\AI-for-STM32-Skills\hardware\
+```
+
+The repository currently contains:
+
+```text
+hardware/
+├── nucleo-g431rb/
+└── nucleo-c542rc/
+```
+
+Currently supported development boards:
+
+- NUCLEO-G431RB
+- NUCLEO-C542RC
+
+Each development board directory contains an AI4STM32 hardware overview document together with related datasheets, board schematics, user manuals, BOM files, and other hardware references.
+
+`stm32-init` reads the corresponding hardware information according to the selected development board and extracts the hardware platform, MCU pin definitions, and peripheral connections required for the project requirements.
 
 ---
 
-> **让AI不只是生成STM32代码，而是在明确职责和开发者控制下参与需求整理、工程理解、任务规划和代码实现，并最终回到真实硬件完成验证。**
+## Documentation
+
+AI4STM32 project documentation is stored in the `docs/` directory.
+
+Public usage-related documents include:
+
+- [Installation and Usage Guide](docs/Installation_Guide.md)
+- [AI4MCU Skill Writing Specification](docs/AI4MCU_Skill编写规范.md)
+
+Each STM32 experiment project also contains its own `docs/` directory generated and maintained during the AI4STM32 workflow. These project-specific documents contain project requirements, initial project analysis, programming task lists, and development logs.
+
+---
+
+## License
+
+Skills, code, and documentation originally developed for AI4STM32 are released under the MIT License.
+
+See:
+
+[LICENSE](LICENSE)
+
+Third-party materials and code included or referenced in this repository remain subject to their original copyright and license terms.
+
+See:
+
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)
+
+---
+
+## Contact
+
+- Project: AI4STM32
+- GitHub Repository: `AI-for-STM32-Skills`
+- Authors: Huang Xiaofeng & Huang Shan
+- Email: ai4mcu@qq.com
+- GitHub: [@youcans](https://github.com/youcans)
