@@ -52,3 +52,4 @@ Thumbs.db
 demo_basics/**
 !demo_basics/**/
 !demo_basics/**/*.ioc
+!demo_basics/**/requirements.txt
