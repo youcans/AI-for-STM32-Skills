@@ -1,10 +1,10 @@
-# AI4STM32
-
-**Claude Code Skills for AI-Collaborative STM32 Basic Experiment Development**
+# AI4STM32 Skills
 
 English | [简体中文](README_zh-CN.md)
 
-- Project: AI4STM32
+**Claude Code Skills for AI-Collaborative STM32 Basic Experiment Development**
+
+- Project Name: AI4STM32 Skills
 - GitHub Repository: `AI-for-STM32-Skills`
 - Authors: Huang Xiaofeng & Huang Shan
 - Email: ai4mcu@qq.com
@@ -12,13 +12,13 @@ English | [简体中文](README_zh-CN.md)
 
 ---
 
-## Introduction
+## Project Overview
 
-AI4STM32 is a set of Claude Code user-level Skills designed for STM32 basic experiment development. It organizes project requirement preparation, initial project analysis, programming task planning, code implementation, and development logging into a simplified and practical AI-collaborative STM32 development workflow.
+AI4STM32 Skills is a set of Claude Code user-level Skills designed for STM32 basic experiment development. It organizes project requirement preparation, initial project analysis, programming task planning, code implementation, and development logging into a simplified and practical AI-collaborative STM32 development workflow.
 
-The project mainly targets basic STM32 experiments involving GPIO, timers, PWM, ADC, DAC, UART, I2C, SPI, interrupts, DMA, RTC, watchdogs, Flash, and related MCU programming mechanisms. Claude Code works together with STM32CubeMX, VS Code, and real development boards throughout the development process.
+The project mainly targets STM32 basic experiments involving GPIO, timers, PWM, ADC, DAC, UART, I2C, SPI, interrupts, DMA, RTC, watchdogs, Flash, and other common MCU functions. Claude Code works together with STM32CubeMX, VS Code, and real development boards throughout the development process.
 
-AI4STM32 currently consists of five Skills: `stm32-init`, `stm32-scan`, `stm32-plan`, `stm32-code`, and `stm32-log`.
+AI4STM32 Skills currently consists of five Skills: `stm32-init`, `stm32-scan`, `stm32-plan`, `stm32-code`, and `stm32-log`.
 
 The project follows two basic principles:
 
@@ -30,20 +30,18 @@ The project follows two basic principles:
 
 ## Project Components
 
-AI4STM32 consists mainly of Claude Code Skills, hardware documentation, and real STM32 basic experiment projects:
+AI4STM32 Skills mainly consists of Claude Code Skills, hardware documentation, basic experiment starter projects, and complete reference projects:
 
 ```text
-AI4STM32
+AI4STM32 Skills
 │
 ├── claude-user-skills/    # Provides the AI-collaborative development method
-│
-├── hardware/              # Provides hardware information required for development
-│
-└── demo_basics/           # Provides real STM32 basic experiment projects
-                           # for running and validating the method
+├── hardware/              # Provides hardware documentation required for development
+├── demo_basics/           # Provides 15 basic experiment starter projects
+└── demo_basics_ref/       # Provides complete reference projects developed with the Skill workflow
 ```
 
-The `docs/` directory contains project-level documentation for AI4STM32.
+The `docs/` directory contains public project documentation for AI4STM32 Skills.
 
 The main repository structure is:
 
@@ -51,6 +49,7 @@ The main repository structure is:
 AI-for-STM32-Skills/
 ├── claude-user-skills/
 ├── demo_basics/
+├── demo_basics_ref/
 ├── docs/
 ├── hardware/
 ├── .gitignore
@@ -60,6 +59,14 @@ AI-for-STM32-Skills/
 └── THIRD_PARTY_NOTICES.md
 ```
 
+The main directories are used as follows:
+
+- `claude-user-skills/` contains the five Claude Code user-level Skills and their related template files;
+- `hardware/` contains board hardware overviews, datasheets, schematics, user manuals, BOM files, and other hardware documentation;
+- `demo_basics/` provides `.ioc` files and `requirements.txt` files for 15 basic experiments, allowing users to run the AI4STM32 Skills workflow themselves;
+- `demo_basics_ref/` provides several complete reference projects that have already gone through the full Skill development workflow. It currently contains seven complete projects;
+- `docs/` contains public documentation for installation, usage, and Skill specifications.
+
 ---
 
 ## Skill System and Development Workflow
@@ -68,11 +75,13 @@ AI-for-STM32-Skills/
 
 | Skill | Main Function | Invocation |
 |---|---|---|
-| `stm32-init` | Collects project goals, functional requirements, and hardware information, and generates the project requirements document | `/stm32-init [user-description]` |
+| `stm32-init` | Collects project goals, functional requirements, and hardware information, and generates the project requirements document | `/stm32-init [<User_Req>]` |
 | `stm32-scan` | Analyzes the STM32CubeMX-generated initial project together with the project requirements | `/stm32-scan` |
 | `stm32-plan` | Splits and refines programming tasks and generates the programming task list | `/stm32-plan` |
-| `stm32-code` | Implements code changes for one specified programming task | `/stm32-code <task-id>` |
-| `stm32-log` | Appends development logs | Automatically called by other Skills |
+| `stm32-code` | Implements code changes for a specified programming task | `/stm32-code <task-id>` |
+| `stm32-log` | Appends project development logs | Automatically called by other Skills |
+
+In `stm32-init`, `<User_Req>` is an optional path and filename of a user requirement file. If the parameter is provided, the specified requirement file is read. If no parameter is provided, `requirements.txt` in the current project root directory is read by default. If the requirement file cannot be found, cannot be read, or does not provide sufficient information, the Skill obtains and refines the project requirements through dialogue with the developer.
 
 ### Typical Development Workflow
 
@@ -98,16 +107,16 @@ stm32-plan
         │
         ├── Stage 1: Generate the programming task list
         │        ↓
-        │     Developer review and confirmation
+        │     Developer confirmation
         │
         └── Stage 2: Refine each programming task
         ↓
 stm32-code T01
         │
-        └── Implement code changes for the current task
+        └── Implement code changes for the current programming task
         ↓
 Developer performs Build, flashing, debugging,
-and hardware validation
+and hardware runtime validation
         ↓
 stm32-code T02
         ↓
@@ -122,7 +131,13 @@ Continue with subsequent programming tasks
 
 ### 1. Get the Project
 
-AI4STM32 uses a fixed default path for its hardware documentation, so cloning the repository to the following location is recommended:
+AI4STM32 Skills currently uses the following fixed hardware documentation path:
+
+```text
+C:\AI-for-STM32-Skills\hardware\
+```
+
+Therefore, the repository should be cloned to:
 
 ```text
 C:\AI-for-STM32-Skills
@@ -143,61 +158,96 @@ git pull
 
 ### 2. Install the Skills
 
-Create the Claude Code user-level Skill directory if it does not already exist:
+Create the Claude Code user-level Skill directory:
 
 ```powershell
 New-Item -ItemType Directory -Path "$HOME\.claude\skills" -Force | Out-Null
 ```
 
-Copy all AI4STM32 Skills into the Claude Code user-level Skill directory:
+Copy the AI4STM32 Skills into the Claude Code user-level Skill directory:
 
 ```powershell
 Copy-Item -Path "C:\AI-for-STM32-Skills\claude-user-skills\*" -Destination "$HOME\.claude\skills\" -Recurse -Force
 ```
 
-### 3. Create an STM32 Project and Start Claude Code
+### 3. Select a Basic Experiment
 
-An STM32 project can be located in any working directory. For example:
+Each experiment directory in `demo_basics/` contains only two starter files:
+
+```text
+<project-name>.ioc
+requirements.txt
+```
+
+For example:
+
+```text
+demo_basics/
+└── GPIO_EXTI/
+    ├── GPIO_EXTI.ioc
+    └── requirements.txt
+```
+
+Enter the experiment directory and start Claude Code:
 
 ```powershell
-mkdir D:\workspace\Demo01
-cd D:\workspace\Demo01
+cd C:\AI-for-STM32-Skills\demo_basics\GPIO_EXTI
 claude
 ```
 
-The directory in which Claude Code is started is treated as the STM32 project root directory, and the project name is taken from the current directory name.
-
-In this example:
-
-```text
-<project-name> = Demo01
-```
+The directory in which Claude Code is started is treated as the STM32 project root directory. In this example, the project name is `GPIO_EXTI`.
 
 ### 4. Initialize the Project
 
-If no user requirement description file is provided:
+Run:
 
 ```text
 /stm32-init
 ```
 
-If a user requirement description file is available:
+Because `<User_Req>` is not provided, `stm32-init` automatically reads:
 
 ```text
-/stm32-init [user-description]
+requirements.txt
 ```
 
-After the project requirements have been prepared, configure the MCU and peripherals in STM32CubeMX and generate the initial project.
+from the current project directory.
 
-### 5. Continue Development
+You can also explicitly specify another requirement file:
 
-After the initial project has been generated and the initial Build has been completed, run:
+```text
+/stm32-init <User_Req>
+```
+
+For example:
+
+```text
+/stm32-init D:\requirements\gpio_exti.txt
+```
+
+If the requirement file does not exist, cannot be read, or does not contain sufficient information, `stm32-init` obtains and refines the project requirements through dialogue.
+
+After the project requirements have been prepared and confirmed, continue with STM32CubeMX project generation.
+
+### 5. Generate the Initial Project
+
+Open the provided `.ioc` file in STM32CubeMX, for example:
+
+```text
+GPIO_EXTI.ioc
+```
+
+Review the existing configuration as needed, generate the initial project, and perform the initial Build in VS Code to confirm that the generated project builds successfully.
+
+### 6. Continue Development
+
+Analyze the initial project:
 
 ```text
 /stm32-scan
 ```
 
-Then plan the programming tasks:
+Plan the programming tasks:
 
 ```text
 /stm32-plan
@@ -209,7 +259,7 @@ Implement the first programming task:
 /stm32-code T01
 ```
 
-After the code modification is completed, the developer performs Build, flashing, debugging, and hardware validation according to the validation requirements in the programming task list.
+After the code modification is completed, the developer performs Build, flashing, debugging, and hardware runtime validation according to the validation requirements in the programming task list.
 
 Continue with the next task:
 
@@ -217,7 +267,7 @@ Continue with the next task:
 /stm32-code T02
 ```
 
-For complete installation, update, environment checking, and usage instructions, see:
+For detailed installation, update, environment checking, and complete usage instructions, see:
 
 [Installation and Usage Guide](docs/Installation_Guide.md)
 
@@ -225,9 +275,16 @@ For complete installation, update, environment checking, and usage instructions,
 
 ## Basic Experiments
 
-The `demo_basics/` directory contains STM32 basic experiment projects developed using the AI4STM32 Skill workflow. These projects are used to run and validate the AI-collaborative development method in real STM32 projects.
+### `demo_basics/`
 
-The repository currently contains 15 basic experiments. They are listed below in the intended experiment sequence rather than alphabetical order:
+The `demo_basics/` directory provides 15 STM32 basic experiment starter projects for users to run and validate the AI4STM32 Skills workflow themselves.
+
+Each experiment directory contains only:
+
+- a preconfigured STM32CubeMX `.ioc` file;
+- a `requirements.txt` file describing the experiment goals and functional requirements.
+
+The 15 experiments are listed below in the intended experiment sequence rather than alphabetical order:
 
 ```text
 demo_basics/
@@ -248,15 +305,45 @@ demo_basics/
 └── Flash_Parameter/    # Flash parameter storage experiment
 ```
 
-Each directory is an independent STM32 experiment project containing the STM32CubeMX project, source code, and development documents generated during the AI4STM32 Skill workflow.
+These experiments cover typical STM32 development topics including GPIO, timers, PWM, ADC/DAC, USART/LPUART, I2C, SPI, interrupts, DMA, RTC, independent watchdogs, and Flash.
 
-Together, these experiments cover typical STM32 development topics including GPIO, timers, PWM, ADC/DAC, USART/LPUART, I2C, SPI, interrupts, DMA, RTC, independent watchdogs, and Flash.
+Users can start from the provided `.ioc` and `requirements.txt` files and then run `stm32-init`, `stm32-scan`, `stm32-plan`, and `stm32-code` in sequence to complete the full AI-collaborative development workflow.
+
+### `demo_basics_ref/`
+
+The `demo_basics_ref/` directory contains complete reference projects that have already been developed and validated using the AI4STM32 Skills workflow.
+
+It currently provides seven complete reference projects. These projects demonstrate the complete results from user requirements and the STM32CubeMX initial project through project analysis, programming task planning, code implementation, and hardware validation.
+
+A reference project may contain:
+
+```text
+<project-name>/
+├── cmake/
+├── Core/
+├── docs/
+│   ├── tmp/
+│   ├── requirements/
+│   ├── analysis/
+│   ├── tasks/
+│   └── <project-name>_log.md
+├── Drivers/
+├── <project-name>.ioc
+├── requirements.txt
+├── CMakeLists.txt
+├── startup_*.s
+└── *.ld
+```
+
+The actual files and directories may vary depending on the experiment.
+
+`demo_basics/` is intended for users to run the AI4STM32 Skills workflow themselves, while `demo_basics_ref/` provides completed projects for reference. They correspond to the “experiment starting point” and the “complete reference result,” respectively.
 
 ---
 
 ## Supported Hardware
 
-The AI4STM32 hardware documentation is located at:
+The hardware documentation is located at:
 
 ```text
 C:\AI-for-STM32-Skills\hardware\
@@ -275,28 +362,28 @@ Currently supported development boards:
 - NUCLEO-G431RB
 - NUCLEO-C542RC
 
-Each development board directory contains an AI4STM32 hardware overview document together with related datasheets, board schematics, user manuals, BOM files, and other hardware references.
+Each board directory contains a hardware overview prepared for the AI4STM32 Skills project, together with related datasheets, board schematics, user manuals, BOM files, and other hardware references.
 
-`stm32-init` reads the corresponding hardware information according to the selected development board and extracts the hardware platform, MCU pin definitions, and peripheral connections required for the project requirements.
+`stm32-init` reads the corresponding hardware documentation according to the selected development board and uses it to provide hardware platform information, MCU pin definitions, and peripheral connection information for the project requirements.
 
 ---
 
 ## Documentation
 
-AI4STM32 project documentation is stored in the `docs/` directory.
+Public AI4STM32 Skills documentation is stored in the `docs/` directory.
 
-Public usage-related documents include:
+Main documents include:
 
 - [Installation and Usage Guide](docs/Installation_Guide.md)
 - [AI4MCU Skill Writing Specification](docs/AI4MCU_Skill编写规范.md)
 
-Each STM32 experiment project also contains its own `docs/` directory generated and maintained during the AI4STM32 workflow. These project-specific documents contain project requirements, initial project analysis, programming task lists, and development logs.
+When AI4STM32 Skills are used in a specific STM32 project, an independent `docs/` directory is generated in that project root directory to store the project requirements, initial project analysis, programming task list, and development log.
 
 ---
 
 ## License
 
-Skills, code, and documentation originally developed for AI4STM32 are released under the MIT License.
+Skills, code, and documentation originally developed for the AI4STM32 Skills project are released under the MIT License.
 
 See:
 
@@ -312,7 +399,7 @@ See:
 
 ## Contact
 
-- Project: AI4STM32
+- Project Name: AI4STM32 Skills
 - GitHub Repository: `AI-for-STM32-Skills`
 - Authors: Huang Xiaofeng & Huang Shan
 - Email: ai4mcu@qq.com
