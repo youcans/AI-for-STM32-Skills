@@ -1,11 +1,11 @@
-# AI4STM32 Skills
+# AI4MCU-STM32-Skills
 
 English | [简体中文](README_zh-CN.md)
 
 **Claude Code Skills for AI-Collaborative STM32 Basic Experiment Development**
 
 - Project Name: AI4STM32 Skills
-- GitHub Repository: `AI-for-STM32-Skills`
+- GitHub Repository: `AI4MCU-STM32-Skills`
 - Authors: Huang Xiaofeng & Huang Shan
 - Email: ai4mcu@qq.com
 - GitHub: [@youcans](https://github.com/youcans)
@@ -46,7 +46,7 @@ The `docs/` directory contains public project documentation for AI4STM32 Skills.
 The main repository structure is:
 
 ```text
-AI-for-STM32-Skills/
+AI4MCU-STM32-Skills/
 ├── claude-user-skills/
 ├── demo_basics/
 ├── demo_basics_ref/
@@ -134,25 +134,25 @@ Continue with subsequent programming tasks
 AI4STM32 Skills currently uses the following fixed hardware documentation path:
 
 ```text
-C:\AI-for-STM32-Skills\hardware\
+C:\AI4MCU-STM32-Skills\hardware\
 ```
 
 Therefore, the repository should be cloned to:
 
 ```text
-C:\AI-for-STM32-Skills
+C:\AI4MCU-STM32-Skills
 ```
 
 Run the following command in Windows PowerShell:
 
 ```powershell
-git clone https://github.com/youcans/AI-for-STM32-Skills.git C:\AI-for-STM32-Skills
+git clone https://github.com/youcans/AI4MCU-STM32-Skills.git C:\AI4MCU-STM32-Skills
 ```
 
 To update the repository later:
 
 ```powershell
-cd C:\AI-for-STM32-Skills
+cd C:\AI4MCU-STM32-Skills
 git pull
 ```
 
@@ -167,7 +167,7 @@ New-Item -ItemType Directory -Path "$HOME\.claude\skills" -Force | Out-Null
 Copy the AI4STM32 Skills into the Claude Code user-level Skill directory:
 
 ```powershell
-Copy-Item -Path "C:\AI-for-STM32-Skills\claude-user-skills\*" -Destination "$HOME\.claude\skills\" -Recurse -Force
+Copy-Item -Path "C:\AI4MCU-STM32-Skills\claude-user-skills\*" -Destination "$HOME\.claude\skills\" -Recurse -Force
 ```
 
 ### 3. Select a Basic Experiment
@@ -191,7 +191,7 @@ demo_basics/
 Enter the experiment directory and start Claude Code:
 
 ```powershell
-cd C:\AI-for-STM32-Skills\demo_basics\GPIO_EXTI
+cd C:\AI4MCU-STM32-Skills\demo_basics\GPIO_EXTI
 claude
 ```
 
@@ -346,7 +346,7 @@ The actual files and directories may vary depending on the experiment.
 The hardware documentation is located at:
 
 ```text
-C:\AI-for-STM32-Skills\hardware\
+C:\AI4MCU-STM32-Skills\hardware\
 ```
 
 The repository currently contains:
@@ -400,7 +400,7 @@ See:
 ## Contact
 
 - Project Name: AI4STM32 Skills
-- GitHub Repository: `AI-for-STM32-Skills`
+- GitHub Repository: `AI4MCU-STM32-Skills`
 - Authors: Huang Xiaofeng & Huang Shan
 - Email: ai4mcu@qq.com
 - GitHub: [@youcans](https://github.com/youcans)

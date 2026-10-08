@@ -1,11 +1,11 @@
-# AI4STM32 Skills
+# AI4MCU-STM32-Skills
 
 [English](README.md) | 简体中文
 
 **基于Claude Code的STM32基础实验AI协同开发Skill**
 
 - 项目名称：AI4STM32 Skills
-- GitHub仓库：`AI-for-STM32-Skills`
+- GitHub仓库：`AI4MCU-STM32-Skills`
 - 作者：Huang Xiaofeng & Huang Shan
 - 邮箱：ai4mcu@qq.com
 - GitHub：[@youcans](https://github.com/youcans)
@@ -46,7 +46,7 @@ AI4STM32 Skills
 主要目录结构如下：
 
 ```text
-AI-for-STM32-Skills/
+AI4MCU-STM32-Skills/
 ├── claude-user-skills/
 ├── demo_basics/
 ├── demo_basics_ref/
@@ -133,25 +133,25 @@ stm32-code T02
 AI4STM32 Skills当前使用固定的硬件资料路径：
 
 ```text
-C:\AI-for-STM32-Skills\hardware\
+C:\AI4MCU-STM32-Skills\hardware\
 ```
 
 因此，应将仓库克隆到：
 
 ```text
-C:\AI-for-STM32-Skills
+C:\AI4MCU-STM32-Skills
 ```
 
 在Windows PowerShell中执行：
 
 ```powershell
-git clone https://github.com/youcans/AI-for-STM32-Skills.git C:\AI-for-STM32-Skills
+git clone https://github.com/youcans/AI4MCU-STM32-Skills.git C:\AI4MCU-STM32-Skills
 ```
 
 后续更新项目：
 
 ```powershell
-cd C:\AI-for-STM32-Skills
+cd C:\AI4MCU-STM32-Skills
 git pull
 ```
 
@@ -166,7 +166,7 @@ New-Item -ItemType Directory -Path "$HOME\.claude\skills" -Force | Out-Null
 将AI4STM32 Skills复制到Claude Code用户级Skill目录：
 
 ```powershell
-Copy-Item -Path "C:\AI-for-STM32-Skills\claude-user-skills\*" -Destination "$HOME\.claude\skills\" -Recurse -Force
+Copy-Item -Path "C:\AI4MCU-STM32-Skills\claude-user-skills\*" -Destination "$HOME\.claude\skills\" -Recurse -Force
 ```
 
 ### 3. 选择基础实验
@@ -190,7 +190,7 @@ demo_basics/
 进入实验目录并启动Claude Code：
 
 ```powershell
-cd C:\AI-for-STM32-Skills\demo_basics\GPIO_EXTI
+cd C:\AI4MCU-STM32-Skills\demo_basics\GPIO_EXTI
 claude
 ```
 
@@ -343,7 +343,7 @@ demo_basics/
 当前硬件资料库位于：
 
 ```text
-C:\AI-for-STM32-Skills\hardware\
+C:\AI4MCU-STM32-Skills\hardware\
 ```
 
 目前包含：
@@ -393,7 +393,7 @@ AI4STM32 Skills项目自行编写的Skill、代码和文档采用MIT License，�
 ## 联系方式
 
 - 项目名称：AI4STM32 Skills
-- GitHub仓库：`AI-for-STM32-Skills`
+- GitHub仓库：`AI4MCU-STM32-Skills`
 - 作者：Huang Xiaofeng & Huang Shan
 - 邮箱：ai4mcu@qq.com
 - GitHub：[@youcans](https://github.com/youcans)
