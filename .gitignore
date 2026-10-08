@@ -48,8 +48,14 @@ Thumbs.db
 **/.vscode/c_cpp_properties.json
 **/.vscode/launch.json
 
-# demo_basics: only .ioc files
-demo_basics/**
-!demo_basics/**/
-!demo_basics/**/*.ioc
-!demo_basics/**/requirements.txt
+# nucleo-g431rb_basics: only .ioc and requirements.txt
+nucleo-g431rb_basics/**
+!nucleo-g431rb_basics/**/
+!nucleo-g431rb_basics/**/*.ioc
+!nucleo-g431rb_basics/**/requirements.txt
+
+# nucleo-c542rc_basics: only .ioc and requirements.txt
+nucleo-c542rc_basics/**
+!nucleo-c542rc_basics/**/
+!nucleo-c542rc_basics/**/*.ioc
+!nucleo-c542rc_basics/**/requirements.txt
