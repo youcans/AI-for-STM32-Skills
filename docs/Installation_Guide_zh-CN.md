@@ -1,8 +1,8 @@
-# AI4STM32 Skill安装与使用指南
+# AI4MCU-STM32-Skills安装与使用指南
 
 [English](Installation_Guide.md) | 简体中文
 
-本文介绍AI4STM32 Skill的安装、更新和基本使用方法。项目介绍、Skill体系和基础实验说明参见项目根目录下的`README_zh-CN.md`。
+本文介绍AI4MCU-STM32-Skills的安装、更新和基本使用方法。项目介绍、Skill体系和基础实验说明参见项目根目录下的`README_zh-CN.md`。
 
 ---
 
@@ -10,7 +10,7 @@
 
 ### 1.1 安装前准备
 
-使用AI4STM32 Skill前，需要准备以下开发环境：
+使用AI4MCU-STM32-Skills前，需要准备以下开发环境：
 
 - Windows；
 - Windows PowerShell；
@@ -26,32 +26,32 @@
 PS C:\Users\Administrator>
 ```
 
-AI4STM32 Skill当前的硬件资料路径固定为：
+AI4MCU-STM32-Skills当前的硬件资料路径固定为：
 
 ```text
-C:\AI-for-STM32-Skills\hardware\
+C:\AI4MCU-STM32-Skills\hardware\
 ```
 
-因此，应将AI4STM32 Skill仓库安装到：
+因此，应将AI4MCU-STM32-Skills仓库安装到：
 
 ```text
-C:\AI-for-STM32-Skills
+C:\AI4MCU-STM32-Skills
 ```
 
-### 1.2 获取AI4STM32 Skill
+### 1.2 获取AI4MCU-STM32-Skills
 
 1. 打开Windows PowerShell。
 
 2. 首次安装时，执行：
 
 ```powershell
-git clone https://github.com/youcans/AI-for-STM32-Skills.git C:\AI-for-STM32-Skills
+git clone https://github.com/youcans/AI4MCU-STM32-Skills.git C:\AI4MCU-STM32-Skills
 ```
 
 3. 检查项目目录：
 
 ```powershell
-Get-ChildItem C:\AI-for-STM32-Skills
+Get-ChildItem C:\AI4MCU-STM32-Skills
 ```
 
 正常情况下应能够看到：
@@ -86,10 +86,10 @@ Remove-Item "$HOME\.claude\skills\stm32-code" -Recurse -Force -ErrorAction Silen
 Remove-Item "$HOME\.claude\skills\stm32-log" -Recurse -Force -ErrorAction SilentlyContinue
 ```
 
-3. 将AI4STM32 Skill复制到Claude Code用户级Skill目录：
+3. 将AI4MCU-STM32-Skills复制到Claude Code用户级Skill目录：
 
 ```powershell
-Copy-Item -Path "C:\AI-for-STM32-Skills\claude-user-skills\*" -Destination "$HOME\.claude\skills\" -Recurse -Force
+Copy-Item -Path "C:\AI4MCU-STM32-Skills\claude-user-skills\*" -Destination "$HOME\.claude\skills\" -Recurse -Force
 ```
 
 ### 1.4 检查安装结果
@@ -123,7 +123,7 @@ Get-ChildItem "$HOME\.claude\skills\stm32-init" -Recurse
 执行：
 
 ```powershell
-Get-ChildItem C:\AI-for-STM32-Skills\hardware
+Get-ChildItem C:\AI4MCU-STM32-Skills\hardware
 ```
 
 当前应包含：
@@ -136,7 +136,7 @@ nucleo-c542rc
 例如检查NUCLEO-G431RB硬件资料：
 
 ```powershell
-Get-ChildItem C:\AI-for-STM32-Skills\hardware\nucleo-g431rb
+Get-ChildItem C:\AI4MCU-STM32-Skills\hardware\nucleo-g431rb
 ```
 
 其中应包含：
@@ -147,12 +147,12 @@ hardware_overview_g431rb.md
 
 以及数据手册、原理图、用户手册、BOM等相关资料。
 
-### 1.6 更新AI4STM32 Skill
+### 1.6 更新AI4MCU-STM32-Skills
 
-1. 进入AI4STM32 Skill仓库：
+1. 进入AI4MCU-STM32-Skills仓库：
 
 ```powershell
-cd C:\AI-for-STM32-Skills
+cd C:\AI4MCU-STM32-Skills
 ```
 
 2. 拉取最新版本：
@@ -174,14 +174,14 @@ Remove-Item "$HOME\.claude\skills\stm32-log" -Recurse -Force -ErrorAction Silent
 4. 重新复制最新版Skill：
 
 ```powershell
-Copy-Item -Path "C:\AI-for-STM32-Skills\claude-user-skills\*" -Destination "$HOME\.claude\skills\" -Recurse -Force
+Copy-Item -Path "C:\AI4MCU-STM32-Skills\claude-user-skills\*" -Destination "$HOME\.claude\skills\" -Recurse -Force
 ```
 
 ---
 
 ## 2. 使用基础实验
 
-AI4STM32 Skill在`demo_basics/`中提供15个STM32基础实验起始项目。每个实验目录只保留已经配置好的STM32CubeMX`.ioc`文件和示例用户需求文件`requirements.txt`，用于学习和测试AI4STM32 Skill开发流程。
+AI4MCU-STM32-Skills在`demo_basics/`中提供15个STM32基础实验起始项目。每个实验目录只保留已经配置好的STM32CubeMX`.ioc`文件和示例用户需求文件`requirements.txt`，用于学习和测试AI4MCU-STM32-Skills开发流程。
 
 以下以`GPIO_EXTI`实验为例说明基本使用方法。
 
@@ -190,7 +190,7 @@ AI4STM32 Skill在`demo_basics/`中提供15个STM32基础实验起始项目。每
 进入：
 
 ```text
-C:\AI-for-STM32-Skills\demo_basics\GPIO_EXTI
+C:\AI4MCU-STM32-Skills\demo_basics\GPIO_EXTI
 ```
 
 该实验目录提供以下两个起始文件：
@@ -215,7 +215,7 @@ GPIO_EXTI/
 2. 进入实验目录：
 
 ```powershell
-cd C:\AI-for-STM32-Skills\demo_basics\GPIO_EXTI
+cd C:\AI4MCU-STM32-Skills\demo_basics\GPIO_EXTI
 ```
 
 3. 启动Claude Code：
@@ -262,7 +262,7 @@ requirements.txt
 
 如果未找到用户需求文件、文件读取失败，或者需求内容不足以确定项目目标和功能要求，`stm32-init`会通过对话交互获取和完善相关需求。
 
-`stm32-init`结合用户需求和AI4STM32 Skill硬件资料生成项目任务需求文件。
+`stm32-init`结合用户需求和AI4MCU-STM32-Skills硬件资料生成项目任务需求文件。
 
 开发者确认后，正式项目任务需求文件保存至：
 
@@ -272,7 +272,7 @@ docs/requirements/proj_requirements.md
 
 ### 2.4 使用STM32CubeMX生成初始工程
 
-`demo_basics/`中的基础实验已经提供配置完成的`.ioc`文件，因此在测试AI4STM32 Skill开发流程时，不需要从头完成STM32CubeMX配置。
+`demo_basics/`中的基础实验已经提供配置完成的`.ioc`文件，因此在测试AI4MCU-STM32-Skills开发流程时，不需要从头完成STM32CubeMX配置。
 
 1. 使用STM32CubeMX打开：
 
@@ -392,7 +392,7 @@ docs/GPIO_EXTI_log.md
 
 ### 2.10 查看完整参考项目
 
-`demo_basics_ref/`保存已经按照AI4STM32 Skill完整开发流程完成开发和验证的参考项目。
+`demo_basics_ref/`保存已经按照AI4MCU-STM32-Skills完整开发流程完成开发和验证的参考项目。
 
 当前提供7个完整参考项目，可用于查看：
 
@@ -402,13 +402,13 @@ docs/GPIO_EXTI_log.md
 - 完成代码修改后的源码；
 - 完整开发流程的最终项目状态。
 
-`demo_basics/`用于用户自行运行AI4STM32 Skill开发流程，`demo_basics_ref/`用于查看已经完成开发后的参考结果。
+`demo_basics/`用于用户自行运行AI4MCU-STM32-Skills开发流程，`demo_basics_ref/`用于查看已经完成开发后的参考结果。
 
 ---
 
 ## 3. 在自己的STM32项目中使用
 
-AI4STM32 Skill不仅可以用于`demo_basics/`中的基础实验，也可以用于开发者自己的STM32项目。
+AI4MCU-STM32-Skills不仅可以用于`demo_basics/`中的基础实验，也可以用于开发者自己的STM32项目。
 
 1. 创建或进入STM32项目目录，例如：
 
@@ -519,16 +519,16 @@ stm32-log
 
 ### 4.3 `stm32-init`无法读取硬件资料
 
-检查AI4STM32 Skill是否安装在：
+检查AI4MCU-STM32-Skills是否安装在：
 
 ```text
-C:\AI-for-STM32-Skills
+C:\AI4MCU-STM32-Skills
 ```
 
 并确认硬件资料目录存在：
 
 ```powershell
-Test-Path C:\AI-for-STM32-Skills\hardware
+Test-Path C:\AI4MCU-STM32-Skills\hardware
 ```
 
 正常情况下应返回：
@@ -571,14 +571,14 @@ requirements.txt
 
 ### 4.5 Skill使用了错误的项目名称或项目文件
 
-AI4STM32 Skill将Claude Code启动时所在目录作为STM32项目根目录，并以当前目录名称作为项目名称。
+AI4MCU-STM32-Skills将Claude Code启动时所在目录作为STM32项目根目录，并以当前目录名称作为项目名称。
 
 调用Skill前，应先进入正确的STM32项目目录，再启动Claude Code。
 
 例如：
 
 ```powershell
-cd C:\AI-for-STM32-Skills\demo_basics\GPIO_EXTI
+cd C:\AI4MCU-STM32-Skills\demo_basics\GPIO_EXTI
 claude
 ```
 
@@ -593,7 +593,7 @@ GPIO_EXTI
 `git pull`只更新：
 
 ```text
-C:\AI-for-STM32-Skills
+C:\AI4MCU-STM32-Skills
 ```
 
 不会自动更新已经安装到 `$HOME\.claude\skills\`中的Skill。

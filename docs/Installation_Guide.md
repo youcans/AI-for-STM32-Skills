@@ -1,8 +1,8 @@
-# AI4STM32 Skill Installation and Usage Guide
+# AI4MCU-STM32-Skills Installation and Usage Guide
 
 English | [简体中文](Installation_Guide_zh-CN.md)
 
-This document describes how to install, update, and use AI4STM32 Skill. For the project overview, Skill system, and basic experiment descriptions, see `README.md` in the project root directory.
+This document describes how to install, update, and use AI4MCU-STM32-Skills. For the project overview, Skill system, and basic experiment descriptions, see `README.md` in the project root directory.
 
 ---
 
@@ -10,7 +10,7 @@ This document describes how to install, update, and use AI4STM32 Skill. For the 
 
 ### 1.1 Prerequisites
 
-Before using AI4STM32 Skill, prepare the following development environment:
+Before using AI4MCU-STM32-Skills, prepare the following development environment:
 
 - Windows;
 - Windows PowerShell;
@@ -26,32 +26,32 @@ All installation commands in this guide are executed in Windows PowerShell. A Po
 PS C:\Users\Administrator>
 ```
 
-The hardware documentation path currently used by AI4STM32 Skill is fixed as:
+The hardware documentation path currently used by AI4MCU-STM32-Skills is fixed as:
 
 ```text
-C:\AI-for-STM32-Skills\hardware\
+C:\AI4MCU-STM32-Skills\hardware\
 ```
 
-Therefore, the AI4STM32 Skill repository should be installed at:
+Therefore, the AI4MCU-STM32-Skills repository should be installed at:
 
 ```text
-C:\AI-for-STM32-Skills
+C:\AI4MCU-STM32-Skills
 ```
 
-### 1.2 Get AI4STM32 Skill
+### 1.2 Get AI4MCU-STM32-Skills
 
 1. Open Windows PowerShell.
 
 2. For the initial installation, run:
 
 ```powershell
-git clone https://github.com/youcans/AI-for-STM32-Skills.git C:\AI-for-STM32-Skills
+git clone https://github.com/youcans/AI4MCU-STM32-Skills.git C:\AI4MCU-STM32-Skills
 ```
 
 3. Check the project directory:
 
 ```powershell
-Get-ChildItem C:\AI-for-STM32-Skills
+Get-ChildItem C:\AI4MCU-STM32-Skills
 ```
 
 Normally, the following items should be present:
@@ -86,10 +86,10 @@ Remove-Item "$HOME\.claude\skills\stm32-code" -Recurse -Force -ErrorAction Silen
 Remove-Item "$HOME\.claude\skills\stm32-log" -Recurse -Force -ErrorAction SilentlyContinue
 ```
 
-3. Copy the AI4STM32 Skill files to the Claude Code user-level Skill directory:
+3. Copy the AI4MCU-STM32-Skills files to the Claude Code user-level Skill directory:
 
 ```powershell
-Copy-Item -Path "C:\AI-for-STM32-Skills\claude-user-skills\*" -Destination "$HOME\.claude\skills\" -Recurse -Force
+Copy-Item -Path "C:\AI4MCU-STM32-Skills\claude-user-skills\*" -Destination "$HOME\.claude\skills\" -Recurse -Force
 ```
 
 ### 1.4 Check the Installation
@@ -123,7 +123,7 @@ You should see `SKILL.md` and its related resource files.
 Run:
 
 ```powershell
-Get-ChildItem C:\AI-for-STM32-Skills\hardware
+Get-ChildItem C:\AI4MCU-STM32-Skills\hardware
 ```
 
 The following directories should currently be present:
@@ -136,7 +136,7 @@ nucleo-c542rc
 For example, to check the NUCLEO-G431RB hardware documentation:
 
 ```powershell
-Get-ChildItem C:\AI-for-STM32-Skills\hardware\nucleo-g431rb
+Get-ChildItem C:\AI4MCU-STM32-Skills\hardware\nucleo-g431rb
 ```
 
 The directory should include:
@@ -147,12 +147,12 @@ hardware_overview_g431rb.md
 
 as well as related datasheets, schematics, user manuals, BOM files, and other hardware documentation.
 
-### 1.6 Update AI4STM32 Skill
+### 1.6 Update AI4MCU-STM32-Skills
 
-1. Enter the AI4STM32 Skill repository:
+1. Enter the AI4MCU-STM32-Skills repository:
 
 ```powershell
-cd C:\AI-for-STM32-Skills
+cd C:\AI4MCU-STM32-Skills
 ```
 
 2. Pull the latest version:
@@ -174,14 +174,14 @@ Remove-Item "$HOME\.claude\skills\stm32-log" -Recurse -Force -ErrorAction Silent
 4. Copy the latest Skills again:
 
 ```powershell
-Copy-Item -Path "C:\AI-for-STM32-Skills\claude-user-skills\*" -Destination "$HOME\.claude\skills\" -Recurse -Force
+Copy-Item -Path "C:\AI4MCU-STM32-Skills\claude-user-skills\*" -Destination "$HOME\.claude\skills\" -Recurse -Force
 ```
 
 ---
 
 ## 2. Using the Basic Experiments
 
-AI4STM32 Skill provides 15 STM32 basic experiment starter projects in `demo_basics/`. Each experiment directory contains only a preconfigured STM32CubeMX `.ioc` file and an example user requirements file named `requirements.txt`. These files can be used directly to learn and test the AI4STM32 Skill development workflow.
+AI4MCU-STM32-Skills provides 15 STM32 basic experiment starter projects in `demo_basics/`. Each experiment directory contains only a preconfigured STM32CubeMX `.ioc` file and an example user requirements file named `requirements.txt`. These files can be used directly to learn and test the AI4MCU-STM32-Skills development workflow.
 
 The following sections use the `GPIO_EXTI` experiment as an example.
 
@@ -190,7 +190,7 @@ The following sections use the `GPIO_EXTI` experiment as an example.
 Go to:
 
 ```text
-C:\AI-for-STM32-Skills\demo_basics\GPIO_EXTI
+C:\AI4MCU-STM32-Skills\demo_basics\GPIO_EXTI
 ```
 
 The experiment directory contains the following two starter files:
@@ -215,7 +215,7 @@ Other basic experiments are used in the same way.
 2. Enter the experiment directory:
 
 ```powershell
-cd C:\AI-for-STM32-Skills\demo_basics\GPIO_EXTI
+cd C:\AI4MCU-STM32-Skills\demo_basics\GPIO_EXTI
 ```
 
 3. Start Claude Code:
@@ -262,7 +262,7 @@ Here, `<User_Req>` specifies the path and filename of the user requirements file
 
 If the user requirements file cannot be found, cannot be read, or does not contain enough information to determine the project goals and functional requirements, `stm32-init` obtains and refines the required information through dialogue with the developer.
 
-`stm32-init` combines the user requirements with the AI4STM32 Skill hardware documentation to generate the project requirements document.
+`stm32-init` combines the user requirements with the AI4MCU-STM32-Skills hardware documentation to generate the project requirements document.
 
 After developer confirmation, the formal project requirements document is saved as:
 
@@ -272,7 +272,7 @@ docs/requirements/proj_requirements.md
 
 ### 2.4 Generate the Initial Project with STM32CubeMX
 
-The basic experiments in `demo_basics/` already provide configured `.ioc` files. Therefore, when testing the AI4STM32 Skill development workflow, there is no need to configure STM32CubeMX from scratch.
+The basic experiments in `demo_basics/` already provide configured `.ioc` files. Therefore, when testing the AI4MCU-STM32-Skills development workflow, there is no need to configure STM32CubeMX from scratch.
 
 1. Open the following file in STM32CubeMX:
 
@@ -390,7 +390,7 @@ docs/GPIO_EXTI_log.md
 
 ### 2.10 View Complete Reference Projects
 
-The `demo_basics_ref/` directory contains reference projects that have already been developed and validated using the complete AI4STM32 Skill development workflow.
+The `demo_basics_ref/` directory contains reference projects that have already been developed and validated using the complete AI4MCU-STM32-Skills development workflow.
 
 Seven complete reference projects are currently provided. They can be used to inspect:
 
@@ -400,13 +400,13 @@ Seven complete reference projects are currently provided. They can be used to in
 - source code after the programming tasks have been implemented;
 - the final project state after completion of the full development workflow.
 
-`demo_basics/` is intended for users to run the AI4STM32 Skill development workflow themselves, while `demo_basics_ref/` provides completed projects for reference.
+`demo_basics/` is intended for users to run the AI4MCU-STM32-Skills development workflow themselves, while `demo_basics_ref/` provides completed projects for reference.
 
 ---
 
-## 3. Using AI4STM32 Skill in Your Own STM32 Project
+## 3. Using AI4MCU-STM32-Skills in Your Own STM32 Project
 
-AI4STM32 Skill can be used not only with the basic experiments in `demo_basics/`, but also with your own STM32 projects.
+AI4MCU-STM32-Skills can be used not only with the basic experiments in `demo_basics/`, but also with your own STM32 projects.
 
 1. Create or enter an STM32 project directory, for example:
 
@@ -517,16 +517,16 @@ If they do not exist, reinstall the Skills using the installation commands above
 
 ### 4.3 `stm32-init` Cannot Read the Hardware Documentation
 
-Check whether AI4STM32 Skill is installed at:
+Check whether AI4MCU-STM32-Skills is installed at:
 
 ```text
-C:\AI-for-STM32-Skills
+C:\AI4MCU-STM32-Skills
 ```
 
 Then confirm that the hardware documentation directory exists:
 
 ```powershell
-Test-Path C:\AI-for-STM32-Skills\hardware
+Test-Path C:\AI4MCU-STM32-Skills\hardware
 ```
 
 Normally, the command should return:
@@ -569,14 +569,14 @@ For example:
 
 ### 4.5 A Skill Uses the Wrong Project Name or Project Files
 
-AI4STM32 Skill treats the directory in which Claude Code is started as the STM32 project root directory and uses the current directory name as the project name.
+AI4MCU-STM32-Skills treats the directory in which Claude Code is started as the STM32 project root directory and uses the current directory name as the project name.
 
 Before invoking a Skill, first enter the correct STM32 project directory and then start Claude Code.
 
 For example:
 
 ```powershell
-cd C:\AI-for-STM32-Skills\demo_basics\GPIO_EXTI
+cd C:\AI4MCU-STM32-Skills\demo_basics\GPIO_EXTI
 claude
 ```
 
@@ -591,7 +591,7 @@ GPIO_EXTI
 `git pull` only updates:
 
 ```text
-C:\AI-for-STM32-Skills
+C:\AI4MCU-STM32-Skills
 ```
 
 It does not automatically update the Skills already installed in:
