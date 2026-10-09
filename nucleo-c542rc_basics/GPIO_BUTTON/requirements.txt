@@ -1,6 +1,6 @@
 [实验名称] GPIO按键输入实验
 [功能目标] 在主循环中轮询用户按键（PC13），每次有效按下时切换板载 LED（PA5）的状态；持续按住不重复触发，松开后可响应下一次按键。
-[开发板和MCU型号] NUCLEO-C542RC开发板，搭载 STM32C542RCT6 MCU
+[开发板和MCU型号] NUCLEO-C542RC 开发板，搭载 STM32C542RCT6 MCU。
 
 [Experiment Name] GPIO Button Input Experiment
 [Objective] Poll the user button (PC13) in the main loop, and toggle the state of the onboard LED (PA5) on each valid press. Holding the button does not trigger repeatedly, and the next press can be responded to after release.

@@ -29,7 +29,7 @@ project_management/
 **/.ninja*
 **/docs/tmp/
 
-# CubeMX temp files (.ioc itself must be kept)
+# CubeMX temp files (.ioc/.ioc2 itself must be kept)
 **/.mxproject
 **/STM32CubeMX/
 
@@ -54,8 +54,14 @@ nucleo-g431rb_basics/**
 !nucleo-g431rb_basics/**/*.ioc
 !nucleo-g431rb_basics/**/requirements.txt
 
-# nucleo-c542rc_basics: only .ioc and requirements.txt
+# nucleo-c542rc_basics: only .ioc2 and requirements.txt
 nucleo-c542rc_basics/**
 !nucleo-c542rc_basics/**/
-!nucleo-c542rc_basics/**/*.ioc
+!nucleo-c542rc_basics/**/*.ioc2
 !nucleo-c542rc_basics/**/requirements.txt
+
+# nucleo-g431rb_basics_ref: 测试中，暂不提交
+nucleo-g431rb_basics_ref/
+
+# nucleo-c542rc_basics_ref: 测试中，暂不提交
+nucleo-c542rc_basics_ref/
