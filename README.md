@@ -35,10 +35,11 @@ AI4STM32 Skills mainly consists of Claude Code Skills, hardware documentation, b
 ```text
 AI4STM32 Skills
 │
-├── claude-user-skills/    # Provides the AI-collaborative development method
-├── hardware/              # Provides hardware documentation required for development
-├── demo_basics/           # Provides 15 basic experiment starter projects
-└── demo_basics_ref/       # Provides complete reference projects developed with the Skill workflow
+├── claude-user-skills/         # Provides the AI-collaborative development method
+├── hardware/                   # Provides hardware documentation required for development
+├── nucleo-g431rb_basics/        # Provides 15 basic experiment starter projects for NUCLEO-G431RB
+├── nucleo-c542rc_basics/        # Currently provides 6 basic experiment starter projects for NUCLEO-C542RC
+└── nucleo-g431rb_basics_ref/    # Provides complete NUCLEO-G431RB reference projects developed with the Skill workflow
 ```
 
 The `docs/` directory contains public project documentation for AI4STM32 Skills.
@@ -48,8 +49,9 @@ The main repository structure is:
 ```text
 AI4MCU-STM32-Skills/
 ├── claude-user-skills/
-├── demo_basics/
-├── demo_basics_ref/
+├── nucleo-g431rb_basics/
+├── nucleo-c542rc_basics/
+├── nucleo-g431rb_basics_ref/
 ├── docs/
 ├── hardware/
 ├── .gitignore
@@ -63,8 +65,9 @@ The main directories are used as follows:
 
 - `claude-user-skills/` contains the five Claude Code user-level Skills and their related template files;
 - `hardware/` contains board hardware overviews, datasheets, schematics, user manuals, BOM files, and other hardware documentation;
-- `demo_basics/` provides `.ioc` files and `requirements.txt` files for 15 basic experiments, allowing users to run the AI4STM32 Skills workflow themselves;
-- `demo_basics_ref/` provides several complete reference projects that have already gone through the full Skill development workflow. It currently contains seven complete projects;
+- `nucleo-g431rb_basics/` provides `.ioc` files and `requirements.txt` files for 15 NUCLEO-G431RB basic experiments, allowing users to run the AI4STM32 Skills workflow themselves;
+- `nucleo-c542rc_basics/` currently provides six basic experiment starter projects for NUCLEO-C542RC, with more experiments to be added;
+- `nucleo-g431rb_basics_ref/` provides complete NUCLEO-G431RB reference projects that have already gone through the full Skill development workflow. It currently contains seven complete projects;
 - `docs/` contains public documentation for installation, usage, and Skill specifications.
 
 ---
@@ -172,17 +175,17 @@ Copy-Item -Path "C:\AI4MCU-STM32-Skills\claude-user-skills\*" -Destination "$HOM
 
 ### 3. Select a Basic Experiment
 
-Each experiment directory in `demo_basics/` contains only two starter files:
+Select a basic experiment from `nucleo-g431rb_basics/` or `nucleo-c542rc_basics/` according to your development board. Each NUCLEO-G431RB experiment directory provides two starter files:
 
 ```text
 <project-name>.ioc
 requirements.txt
 ```
 
-For example:
+The following example uses the NUCLEO-G431RB `GPIO_EXTI` experiment:
 
 ```text
-demo_basics/
+nucleo-g431rb_basics/
 └── GPIO_EXTI/
     ├── GPIO_EXTI.ioc
     └── requirements.txt
@@ -191,7 +194,7 @@ demo_basics/
 Enter the experiment directory and start Claude Code:
 
 ```powershell
-cd C:\AI4MCU-STM32-Skills\demo_basics\GPIO_EXTI
+cd C:\AI4MCU-STM32-Skills\nucleo-g431rb_basics\GPIO_EXTI
 claude
 ```
 
@@ -275,9 +278,9 @@ For detailed installation, update, environment checking, and complete usage inst
 
 ## Basic Experiments
 
-### `demo_basics/`
+### `nucleo-g431rb_basics/`
 
-The `demo_basics/` directory provides 15 STM32 basic experiment starter projects for users to run and validate the AI4STM32 Skills workflow themselves.
+The `nucleo-g431rb_basics/` directory provides 15 STM32 basic experiment starter projects for NUCLEO-G431RB, allowing users to run and validate the AI4STM32 Skills workflow themselves.
 
 Each experiment directory contains only:
 
@@ -287,7 +290,7 @@ Each experiment directory contains only:
 The 15 experiments are listed below in the intended experiment sequence rather than alphabetical order:
 
 ```text
-demo_basics/
+nucleo-g431rb_basics/
 ├── GPIO_IOToggle/      # GPIO output toggle and LED blinking experiment
 ├── GPIO_BUTTON/        # GPIO button input experiment
 ├── GPIO_EXTI/          # GPIO external interrupt experiment
@@ -309,9 +312,25 @@ These experiments cover typical STM32 development topics including GPIO, timers,
 
 Users can start from the provided `.ioc` and `requirements.txt` files and then run `stm32-init`, `stm32-scan`, `stm32-plan`, and `stm32-code` in sequence to complete the full AI-collaborative development workflow.
 
-### `demo_basics_ref/`
+### `nucleo-c542rc_basics/`
 
-The `demo_basics_ref/` directory contains complete reference projects that have already been developed and validated using the AI4STM32 Skills workflow.
+The `nucleo-c542rc_basics/` directory provides basic experiment starter projects for NUCLEO-C542RC. It currently contains six experiments, with more to be added.
+
+The current experiments are listed below in the intended experiment sequence:
+
+```text
+nucleo-c542rc_basics/
+├── GPIO_IOToggle/      # GPIO output toggle and LED blinking experiment
+├── GPIO_BUTTON/        # GPIO button input experiment
+├── GPIO_EXTI/          # GPIO external interrupt experiment
+├── TIM_IT_500ms/       # Timer 500 ms periodic interrupt experiment
+├── TIM_PWM_1kHz/       # Timer 1 kHz PWM output experiment
+└── TIM1_PWM_Comp/      # TIM1 complementary PWM output experiment
+```
+
+### `nucleo-g431rb_basics_ref/`
+
+The `nucleo-g431rb_basics_ref/` directory contains complete NUCLEO-G431RB reference projects that have already been developed and validated using the AI4STM32 Skills workflow.
 
 It currently provides seven complete reference projects. These projects demonstrate the complete results from user requirements and the STM32CubeMX initial project through project analysis, programming task planning, code implementation, and hardware validation.
 
@@ -337,7 +356,7 @@ A reference project may contain:
 
 The actual files and directories may vary depending on the experiment.
 
-`demo_basics/` is intended for users to run the AI4STM32 Skills workflow themselves, while `demo_basics_ref/` provides completed projects for reference. They correspond to the “experiment starting point” and the “complete reference result,” respectively.
+`nucleo-g431rb_basics/` and `nucleo-c542rc_basics/` provide the “experiment starting point” for their respective development boards, allowing users to run the AI4STM32 Skills workflow themselves. `nucleo-g431rb_basics_ref/` provides the “complete reference result” for NUCLEO-G431RB, allowing users to review completed projects.
 
 ---
 

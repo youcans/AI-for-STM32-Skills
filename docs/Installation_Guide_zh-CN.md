@@ -58,8 +58,9 @@ Get-ChildItem C:\AI4MCU-STM32-Skills
 
 ```text
 claude-user-skills
-demo_basics
-demo_basics_ref
+nucleo-g431rb_basics
+nucleo-c542rc_basics
+nucleo-g431rb_basics_ref
 docs
 hardware
 LICENSE
@@ -181,16 +182,19 @@ Copy-Item -Path "C:\AI4MCU-STM32-Skills\claude-user-skills\*" -Destination "$HOM
 
 ## 2. 使用基础实验
 
-AI4MCU-STM32-Skills在`demo_basics/`中提供15个STM32基础实验起始项目。每个实验目录只保留已经配置好的STM32CubeMX`.ioc`文件和示例用户需求文件`requirements.txt`，用于学习和测试AI4MCU-STM32-Skills开发流程。
+AI4MCU-STM32-Skills按开发板分别提供STM32基础实验起始项目，用于学习和测试AI4MCU-STM32-Skills开发流程：
 
-以下以`GPIO_EXTI`实验为例说明基本使用方法。
+- `nucleo-g431rb_basics/`提供NUCLEO-G431RB的15个基础实验起始项目；
+- `nucleo-c542rc_basics/`当前提供NUCLEO-C542RC的6个基础实验起始项目，后续继续增加。
+
+以下以NUCLEO-G431RB的`GPIO_EXTI`实验为例说明基本使用方法。
 
 ### 2.1 选择基础实验
 
-进入：
+根据所用开发板，选择`nucleo-g431rb_basics/`或`nucleo-c542rc_basics/`中的基础实验。本例进入：
 
 ```text
-C:\AI4MCU-STM32-Skills\demo_basics\GPIO_EXTI
+C:\AI4MCU-STM32-Skills\nucleo-g431rb_basics\GPIO_EXTI
 ```
 
 该实验目录提供以下两个起始文件：
@@ -215,7 +219,7 @@ GPIO_EXTI/
 2. 进入实验目录：
 
 ```powershell
-cd C:\AI4MCU-STM32-Skills\demo_basics\GPIO_EXTI
+cd C:\AI4MCU-STM32-Skills\nucleo-g431rb_basics\GPIO_EXTI
 ```
 
 3. 启动Claude Code：
@@ -272,7 +276,7 @@ docs/requirements/proj_requirements.md
 
 ### 2.4 使用STM32CubeMX生成初始工程
 
-`demo_basics/`中的基础实验已经提供配置完成的`.ioc`文件，因此在测试AI4MCU-STM32-Skills开发流程时，不需要从头完成STM32CubeMX配置。
+`nucleo-g431rb_basics/`中的基础实验已经提供配置完成的`.ioc`文件，因此在测试AI4MCU-STM32-Skills开发流程时，不需要从头完成STM32CubeMX配置。
 
 1. 使用STM32CubeMX打开：
 
@@ -392,7 +396,7 @@ docs/GPIO_EXTI_log.md
 
 ### 2.10 查看完整参考项目
 
-`demo_basics_ref/`保存已经按照AI4MCU-STM32-Skills完整开发流程完成开发和验证的参考项目。
+`nucleo-g431rb_basics_ref/`保存面向NUCLEO-G431RB、已经按照AI4MCU-STM32-Skills完整开发流程完成开发和验证的参考项目。
 
 当前提供7个完整参考项目，可用于查看：
 
@@ -402,13 +406,13 @@ docs/GPIO_EXTI_log.md
 - 完成代码修改后的源码；
 - 完整开发流程的最终项目状态。
 
-`demo_basics/`用于用户自行运行AI4MCU-STM32-Skills开发流程，`demo_basics_ref/`用于查看已经完成开发后的参考结果。
+`nucleo-g431rb_basics/`和`nucleo-c542rc_basics/`分别提供两种开发板的起始项目，用于用户自行运行AI4MCU-STM32-Skills开发流程；`nucleo-g431rb_basics_ref/`用于查看NUCLEO-G431RB已经完成开发后的参考结果。
 
 ---
 
 ## 3. 在自己的STM32项目中使用
 
-AI4MCU-STM32-Skills不仅可以用于`demo_basics/`中的基础实验，也可以用于开发者自己的STM32项目。
+AI4MCU-STM32-Skills不仅可以用于`nucleo-g431rb_basics/`和`nucleo-c542rc_basics/`中的基础实验，也可以用于开发者自己的STM32项目。
 
 1. 创建或进入STM32项目目录，例如：
 
@@ -578,7 +582,7 @@ AI4MCU-STM32-Skills将Claude Code启动时所在目录作为STM32项目根目录
 例如：
 
 ```powershell
-cd C:\AI4MCU-STM32-Skills\demo_basics\GPIO_EXTI
+cd C:\AI4MCU-STM32-Skills\nucleo-g431rb_basics\GPIO_EXTI
 claude
 ```
 

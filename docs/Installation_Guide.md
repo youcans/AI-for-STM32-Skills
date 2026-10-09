@@ -58,8 +58,9 @@ Normally, the following items should be present:
 
 ```text
 claude-user-skills
-demo_basics
-demo_basics_ref
+nucleo-g431rb_basics
+nucleo-c542rc_basics
+nucleo-g431rb_basics_ref
 docs
 hardware
 LICENSE
@@ -181,16 +182,19 @@ Copy-Item -Path "C:\AI4MCU-STM32-Skills\claude-user-skills\*" -Destination "$HOM
 
 ## 2. Using the Basic Experiments
 
-AI4MCU-STM32-Skills provides 15 STM32 basic experiment starter projects in `demo_basics/`. Each experiment directory contains only a preconfigured STM32CubeMX `.ioc` file and an example user requirements file named `requirements.txt`. These files can be used directly to learn and test the AI4MCU-STM32-Skills development workflow.
+AI4MCU-STM32-Skills provides STM32 basic experiment starter projects organized by development board for learning and testing the AI4MCU-STM32-Skills development workflow:
 
-The following sections use the `GPIO_EXTI` experiment as an example.
+- `nucleo-g431rb_basics/` provides 15 basic experiment starter projects for NUCLEO-G431RB;
+- `nucleo-c542rc_basics/` currently provides six basic experiment starter projects for NUCLEO-C542RC, with more to be added.
+
+The following sections use the NUCLEO-G431RB `GPIO_EXTI` experiment as an example.
 
 ### 2.1 Select a Basic Experiment
 
-Go to:
+Select a basic experiment from `nucleo-g431rb_basics/` or `nucleo-c542rc_basics/` according to your development board. For this example, go to:
 
 ```text
-C:\AI4MCU-STM32-Skills\demo_basics\GPIO_EXTI
+C:\AI4MCU-STM32-Skills\nucleo-g431rb_basics\GPIO_EXTI
 ```
 
 The experiment directory contains the following two starter files:
@@ -215,7 +219,7 @@ Other basic experiments are used in the same way.
 2. Enter the experiment directory:
 
 ```powershell
-cd C:\AI4MCU-STM32-Skills\demo_basics\GPIO_EXTI
+cd C:\AI4MCU-STM32-Skills\nucleo-g431rb_basics\GPIO_EXTI
 ```
 
 3. Start Claude Code:
@@ -272,7 +276,7 @@ docs/requirements/proj_requirements.md
 
 ### 2.4 Generate the Initial Project with STM32CubeMX
 
-The basic experiments in `demo_basics/` already provide configured `.ioc` files. Therefore, when testing the AI4MCU-STM32-Skills development workflow, there is no need to configure STM32CubeMX from scratch.
+The basic experiments in `nucleo-g431rb_basics/` already provide configured `.ioc` files. Therefore, when testing the AI4MCU-STM32-Skills development workflow, there is no need to configure STM32CubeMX from scratch.
 
 1. Open the following file in STM32CubeMX:
 
@@ -390,7 +394,7 @@ docs/GPIO_EXTI_log.md
 
 ### 2.10 View Complete Reference Projects
 
-The `demo_basics_ref/` directory contains reference projects that have already been developed and validated using the complete AI4MCU-STM32-Skills development workflow.
+The `nucleo-g431rb_basics_ref/` directory contains NUCLEO-G431RB reference projects that have already been developed and validated using the complete AI4MCU-STM32-Skills development workflow.
 
 Seven complete reference projects are currently provided. They can be used to inspect:
 
@@ -400,13 +404,13 @@ Seven complete reference projects are currently provided. They can be used to in
 - source code after the programming tasks have been implemented;
 - the final project state after completion of the full development workflow.
 
-`demo_basics/` is intended for users to run the AI4MCU-STM32-Skills development workflow themselves, while `demo_basics_ref/` provides completed projects for reference.
+`nucleo-g431rb_basics/` and `nucleo-c542rc_basics/` provide starter projects for their respective development boards, allowing users to run the AI4MCU-STM32-Skills development workflow themselves. `nucleo-g431rb_basics_ref/` provides completed NUCLEO-G431RB projects for reference.
 
 ---
 
 ## 3. Using AI4MCU-STM32-Skills in Your Own STM32 Project
 
-AI4MCU-STM32-Skills can be used not only with the basic experiments in `demo_basics/`, but also with your own STM32 projects.
+AI4MCU-STM32-Skills can be used not only with the basic experiments in `nucleo-g431rb_basics/` and `nucleo-c542rc_basics/`, but also with your own STM32 projects.
 
 1. Create or enter an STM32 project directory, for example:
 
@@ -576,7 +580,7 @@ Before invoking a Skill, first enter the correct STM32 project directory and the
 For example:
 
 ```powershell
-cd C:\AI4MCU-STM32-Skills\demo_basics\GPIO_EXTI
+cd C:\AI4MCU-STM32-Skills\nucleo-g431rb_basics\GPIO_EXTI
 claude
 ```
 

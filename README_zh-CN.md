@@ -35,10 +35,11 @@ AI4STM32 Skills主要由Claude Code Skill、硬件资料、基础实验起始项
 ```text
 AI4STM32 Skills
 │
-├── claude-user-skills/    # 提供AI协同开发方法
-├── hardware/              # 提供开发所需硬件资料
-├── demo_basics/           # 提供15个基础实验起始项目
-└── demo_basics_ref/       # 提供已完成Skill开发流程的完整参考项目
+├── claude-user-skills/         # 提供AI协同开发方法
+├── hardware/                   # 提供开发所需硬件资料
+├── nucleo-g431rb_basics/        # 提供NUCLEO-G431RB的15个基础实验起始项目
+├── nucleo-c542rc_basics/        # 当前提供NUCLEO-C542RC的6个基础实验起始项目
+└── nucleo-g431rb_basics_ref/    # 提供NUCLEO-G431RB已完成Skill开发流程的完整参考项目
 ```
 
 仓库中的`docs/`目录用于保存AI4STM32 Skills公开项目文档。
@@ -48,8 +49,9 @@ AI4STM32 Skills
 ```text
 AI4MCU-STM32-Skills/
 ├── claude-user-skills/
-├── demo_basics/
-├── demo_basics_ref/
+├── nucleo-g431rb_basics/
+├── nucleo-c542rc_basics/
+├── nucleo-g431rb_basics_ref/
 ├── docs/
 ├── hardware/
 ├── .gitignore
@@ -63,8 +65,9 @@ AI4MCU-STM32-Skills/
 
 - `claude-user-skills/`保存5个Claude Code用户级Skill及相关模板文件；
 - `hardware/`保存开发板硬件概述、数据手册、原理图、用户手册和BOM等资料；
-- `demo_basics/`提供15个基础实验的`.ioc`文件和`requirements.txt`，用于用户自行运行AI4STM32 Skills开发流程；
-- `demo_basics_ref/`提供其中若干已经完成完整Skill开发流程的参考项目，目前包含7个完整项目；
+- `nucleo-g431rb_basics/`提供NUCLEO-G431RB的15个基础实验的`.ioc`文件和`requirements.txt`，用于用户自行运行AI4STM32 Skills开发流程；
+- `nucleo-c542rc_basics/`当前提供NUCLEO-C542RC的6个基础实验起始项目，后续继续增加实验；
+- `nucleo-g431rb_basics_ref/`提供NUCLEO-G431RB已经完成完整Skill开发流程的参考项目，目前包含7个完整项目；
 - `docs/`保存AI4STM32 Skills安装、使用和Skill规范等公开项目文档。
 
 ---
@@ -171,17 +174,17 @@ Copy-Item -Path "C:\AI4MCU-STM32-Skills\claude-user-skills\*" -Destination "$HOM
 
 ### 3. 选择基础实验
 
-`demo_basics/`中的每个实验目录只提供两个起始文件：
+根据所用开发板，选择`nucleo-g431rb_basics/`或`nucleo-c542rc_basics/`中的基础实验。NUCLEO-G431RB的每个实验目录提供两个起始文件：
 
 ```text
 <project-name>.ioc
 requirements.txt
 ```
 
-例如：
+以下以NUCLEO-G431RB的`GPIO_EXTI`实验为例：
 
 ```text
-demo_basics/
+nucleo-g431rb_basics/
 └── GPIO_EXTI/
     ├── GPIO_EXTI.ioc
     └── requirements.txt
@@ -190,7 +193,7 @@ demo_basics/
 进入实验目录并启动Claude Code：
 
 ```powershell
-cd C:\AI4MCU-STM32-Skills\demo_basics\GPIO_EXTI
+cd C:\AI4MCU-STM32-Skills\nucleo-g431rb_basics\GPIO_EXTI
 claude
 ```
 
@@ -272,9 +275,9 @@ GPIO_EXTI.ioc
 
 ## 基础实验
 
-### `demo_basics/`
+### `nucleo-g431rb_basics/`
 
-`demo_basics/`提供15个STM32基础实验的起始项目，用于用户自行运行和验证AI4STM32 Skills开发流程。
+`nucleo-g431rb_basics/`提供面向NUCLEO-G431RB的15个STM32基础实验起始项目，用于用户自行运行和验证AI4STM32 Skills开发流程。
 
 每个实验目录只保留：
 
@@ -284,7 +287,7 @@ GPIO_EXTI.ioc
 当前15个基础实验按照实验实施顺序排列如下：
 
 ```text
-demo_basics/
+nucleo-g431rb_basics/
 ├── GPIO_IOToggle/      # GPIO输出翻转闪灯实验
 ├── GPIO_BUTTON/        # GPIO按键输入实验
 ├── GPIO_EXTI/          # GPIO外部中断实验
@@ -306,9 +309,25 @@ demo_basics/
 
 用户可以从`.ioc`和`requirements.txt`开始，依次运行`stm32-init`、`stm32-scan`、`stm32-plan`和`stm32-code`，完成整个AI协同开发过程。
 
-### `demo_basics_ref/`
+### `nucleo-c542rc_basics/`
 
-`demo_basics_ref/`保存已经按照AI4STM32 Skills项目的Skill体系完成开发和验证的完整参考项目。
+`nucleo-c542rc_basics/`提供面向NUCLEO-C542RC的基础实验起始项目，当前包含6个实验，后续继续增加。
+
+当前实验按照实验实施顺序排列如下：
+
+```text
+nucleo-c542rc_basics/
+├── GPIO_IOToggle/      # GPIO输出翻转闪灯实验
+├── GPIO_BUTTON/        # GPIO按键输入实验
+├── GPIO_EXTI/          # GPIO外部中断实验
+├── TIM_IT_500ms/       # 定时器500ms周期中断实验
+├── TIM_PWM_1kHz/       # 定时器1kHz PWM输出实验
+└── TIM1_PWM_Comp/      # TIM1互补PWM输出实验
+```
+
+### `nucleo-g431rb_basics_ref/`
+
+`nucleo-g431rb_basics_ref/`保存面向NUCLEO-G431RB、已经按照AI4STM32 Skills项目的Skill体系完成开发和验证的完整参考项目。
 
 当前提供7个完整参考项目，用于展示从用户需求、STM32CubeMX初始工程、工程分析、编程任务规划到代码实现和实际硬件验证后的完整结果。
 
@@ -334,7 +353,7 @@ demo_basics/
 
 具体文件和目录根据实验工程实际内容有所不同。
 
-`demo_basics/`用于用户自行运行AI4STM32 Skills开发流程，`demo_basics_ref/`用于查看已经完成开发后的参考结果，两者分别对应“实验起点”和“完整参考”。
+`nucleo-g431rb_basics/`和`nucleo-c542rc_basics/`分别提供两种开发板的“实验起点”，用于用户自行运行AI4STM32 Skills开发流程；`nucleo-g431rb_basics_ref/`提供NUCLEO-G431RB的“完整参考”，用于查看已经完成开发后的参考结果。
 
 ---
 
